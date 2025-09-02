@@ -12,12 +12,11 @@ app.use(cors());
 
 // Rotas
 
-
 // Rota de inicio
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
 app.listen(PORT, () => {
-  console.log(`Server: https://${HOSTNAME}:${PORT}`);
+  console.log(`Server: http://${HOSTNAME}:${PORT}`);
 });
