@@ -42,10 +42,10 @@ Projeto do módulo Avançado do curso Capacita Brasil.
 ```
 
 
-## Autores
+## Colaboradores
 
 - [@YtalloXD](https://www.github.com/ytalloxd)
 - [@Morpheusmmt](https://github.com/Morpheusmmt)
 - [@BabadookHY](https://github.com/BabadookHY)
-- [@#](https://www.github.com/#)
+- [@Drey-na](https://github.com/Drey-na)
 
