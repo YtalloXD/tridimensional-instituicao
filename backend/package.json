@@ -1,9 +1,14 @@
 {
   "dependencies": {
+    "@prisma/client": "^6.15.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
   },
   "scripts": {
     "start": "nodemon app.js"
+  },
+  "devDependencies": {
+    "prisma": "^6.15.0"
   }
 }
