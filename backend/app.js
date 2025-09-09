@@ -13,16 +13,17 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// Rotas
-const alunosRoutes = require("./AlunosCR/AlunosRoutes");
-app.use(alunosRoutes);
+// Pasta de Rotas
+// const alunosRoutes = require("./AlunosCR/AlunosRoutes");
+// app.use(alunosRoutes);
 
 const professoresRoutes = require("./ProfessoresCR/ProfessoresRoutes");
 app.use(professoresRoutes);
 
-const turmasRoutes = require("./TurmasCR/TurmasRoutes");
-app.use(turmasRoutes);
+// const turmasRoutes = require("./TurmasCR/TurmasRoutes");
+// app.use(turmasRoutes);
 
+// Iniciar o servidor
 app.listen(PORT, () => {
   console.log(`Server: http://${HOSTNAME}:${PORT}`);
 });

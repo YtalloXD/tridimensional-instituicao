@@ -19,7 +19,7 @@ exports.criarProfessor = async (req, res) => {
     },
   });
 
-  let msg = `Professor ${novoProfessorCriado.id} criado com sucesso!`;
+  let msg = `Professor ID: ${novoProfessorCriado.id}, criado com sucesso!`;
   console.log(msg);
   res.status(201).json(novoProfessorCriado);
 };
@@ -34,9 +34,9 @@ exports.buscarProfessorPorId = async (req, res) => {
     },
   });
 
-  let msg = `Professor ID: ${id}`;
+  let msg = `Professor ID: ${id}, achado com sucesso!`;
   console.log(msg);
-  res.status(200).send(alunoDoBanco);
+  res.status(200).send(professorDoBanco);
 };
 
 // Atualizar professor METHOD PUT-ID
