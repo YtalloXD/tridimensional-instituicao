@@ -34,7 +34,7 @@ exports.buscarProfessorPorId = async (req, res) => {
     },
   });
 
-  let msg = `Professor ID: ${id}, achado com sucesso!`;
+  let msg = `Professor ID: ${id}, foi achado com sucesso!`;
   console.log(msg);
   res.status(200).send(professorDoBanco);
 };
