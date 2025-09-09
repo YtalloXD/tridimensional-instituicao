@@ -14,8 +14,8 @@ app.get("/", (req, res) => {
 });
 
 // Pasta de Rotas
-// const alunosRoutes = require("./AlunosCR/AlunosRoutes");
-// app.use(alunosRoutes);
+ const alunosRoutes = require("./AlunosCR/AlunosRoutes");
+ app.use(alunosRoutes);
 
 const professoresRoutes = require("./ProfessoresCR/ProfessoresRoutes");
 app.use(professoresRoutes);
