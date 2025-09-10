@@ -36,7 +36,6 @@ const RegisterPage = ({ onRegisterSuccess }) => {
 
     if (tipo === 'ALUNO') {
       if (!idade || !turmaId) {
-        setError('Para Aluno, todos os campos são obrigatórios.');
         setLoading(false);
         return;
       }
@@ -44,7 +43,6 @@ const RegisterPage = ({ onRegisterSuccess }) => {
       body.turma_id = parseInt(turmaId, 10);
     } else {
       if (!especialidade) {
-        setError('Para Professor, a especialidade é obrigatória.');
         setLoading(false);
         return;
       }
@@ -57,12 +55,14 @@ const RegisterPage = ({ onRegisterSuccess }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      const data = await response.json();
+      const data = await response.json(); 
       if (!response.ok) {
         throw new Error(data.error || 'Ocorreu um erro no registro.');
       }
       setSuccess('Registro feito com sucesso! Você será redirecionado.');
-      setTimeout(() => onRegisterSuccess(), 2000);
+      
+      setTimeout(() => onRegisterSuccess(data), 2000);
+
     } catch (err) {
       setError(err.message);
     } finally {

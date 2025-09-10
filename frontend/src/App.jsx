@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'; 
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 
@@ -12,7 +12,7 @@ const theme = createTheme({
       main: '#f3e5f5',
     },
     background: {
-      default: '#ffffff', 
+      default: '#ffffff',
     },
   },
   typography: {
@@ -25,16 +25,26 @@ const theme = createTheme({
 
 function App() {
   const [page, setPage] = useState('register');
+  const [user, setUser] = useState(null);
 
-  const handleRegisterSuccess = () => {
-    setPage('home');
+ 
+ const handleRegisterSuccess = (userData) => {
+  console.log("📥 Dados recebidos:", userData); 
+  setUser(userData.usuario); 
+  setPage('home');
+};
+  const handleLogout = () => {
+    setUser(null);      
+    setPage('register'); 
   };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      
       {page === 'register' && <RegisterPage onRegisterSuccess={handleRegisterSuccess} />}
-      {page === 'home' && <HomePage />}
+      
+      {page === 'home' && <HomePage user={user} onLogout={handleLogout} />}
     </ThemeProvider>
   );
 }
