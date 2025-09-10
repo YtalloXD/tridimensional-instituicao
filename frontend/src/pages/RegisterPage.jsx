@@ -14,10 +14,7 @@ import {
   Alert,
 } from '@mui/material';
 
-// --- SEU COMPONENTE REACT COM MATERIAL-UI ---
-
 const RegisterPage = ({ onRegisterSuccess }) => {
-  // A lógica permanece 100% a mesma.
   const [tipo, setTipo] = useState('ALUNO');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
