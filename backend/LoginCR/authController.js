@@ -18,13 +18,7 @@ const bcrypt = require('bcryptjs');
 exports.register = async (req, res) => {
   console.log("Dados recebidos:", JSON.stringify(req.body, null, 2));
 
-  // Testa conexão antes de prosseguir
-  const isConnected = await testDatabaseConnection();
-  if (!isConnected) {
-    return res.status(500).json({ 
-      error: "Erro de conexão com o banco de dados"
-    });
-  }
+ 
 
   const { email, senha, tipo, nome, ...profileData } = req.body;
 
