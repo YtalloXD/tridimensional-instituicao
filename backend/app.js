@@ -4,26 +4,27 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
 
-// Rota de inicio
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// Pasta de Rotas
+const authRoutes = require("./LoginCR/authRoutes");
+
+app.use("/auth", authRoutes); 
+
 const alunosRoutes = require("./AlunosCR/AlunosRoutes");
-app.use(alunosRoutes);
+app.use("/alunos", alunosRoutes);
 
 const professoresRoutes = require("./ProfessoresCR/ProfessoresRoutes");
-app.use(professoresRoutes);
+app.use("/professores", professoresRoutes); 
 
 const turmasRoutes = require("./TurmasCR/TurmasRoutes");
-app.use(turmasRoutes);
+app.use("/turmas", turmasRoutes); 
 
-// Iniciar o servidor
+
 app.listen(PORT, () => {
   console.log(`Server: http://${HOSTNAME}:${PORT}`);
 });
