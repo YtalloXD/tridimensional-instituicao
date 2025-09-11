@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 
@@ -24,27 +25,55 @@ const theme = createTheme({
 });
 
 function App() {
-  const [page, setPage] = useState('register');
+  const [page, setPage] = useState('login'); 
   const [user, setUser] = useState(null);
 
- 
- const handleRegisterSuccess = (userData) => {
-  console.log("📥 Dados recebidos:", userData); 
-  setUser(userData.usuario); 
-  setPage('home');
-};
+  const handleLoginSuccess = (userData) => {
+    console.log("📥 Login bem-sucedido:", userData);
+    setUser(userData.usuario);
+    setPage('home');
+  };
+
+  const handleRegisterSuccess = (userData) => {
+    console.log("📥 Registro bem-sucedido:", userData);
+    setUser(userData.usuario);
+    setPage('home');
+  };
+
   const handleLogout = () => {
-    setUser(null);      
-    setPage('register'); 
+    setUser(null);
+    setPage('login');
+  };
+
+  const goToRegister = () => {
+    setPage('register');
+  };
+
+  const goToLogin = () => {
+    setPage('login');
   };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      
-      {page === 'register' && <RegisterPage onRegisterSuccess={handleRegisterSuccess} />}
-      
-      {page === 'home' && <HomePage user={user} onLogout={handleLogout} />}
+      {page === 'login' && (
+        <LoginPage 
+          onLoginSuccess={handleLoginSuccess} 
+          onGoToRegister={goToRegister} 
+        />
+      )}
+      {page === 'register' && (
+        <RegisterPage 
+          onRegisterSuccess={handleRegisterSuccess} 
+          onGoToLogin={goToLogin} 
+        />
+      )}
+      {page === 'home' && (
+        <HomePage 
+          user={user} 
+          onLogout={handleLogout} 
+        />
+      )}
     </ThemeProvider>
   );
 }

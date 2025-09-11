@@ -12,9 +12,10 @@ import {
   Radio,
   CircularProgress,
   Alert,
+  Link,
 } from '@mui/material';
 
-const RegisterPage = ({ onRegisterSuccess }) => {
+const RegisterPage = ({ onRegisterSuccess, onGoToLogin }) => {
   const [tipo, setTipo] = useState('ALUNO');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -36,6 +37,7 @@ const RegisterPage = ({ onRegisterSuccess }) => {
 
     if (tipo === 'ALUNO') {
       if (!idade || !turmaId) {
+        setError('Por favor, preencha todos os campos obrigatórios.');
         setLoading(false);
         return;
       }
@@ -43,6 +45,7 @@ const RegisterPage = ({ onRegisterSuccess }) => {
       body.turma_id = parseInt(turmaId, 10);
     } else {
       if (!especialidade) {
+        setError('Por favor, preencha todos os campos obrigatórios.');
         setLoading(false);
         return;
       }
@@ -136,6 +139,28 @@ const RegisterPage = ({ onRegisterSuccess }) => {
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, py: 1.5, fontSize: '1rem' }} disabled={loading}>
               {loading ? (<CircularProgress size={24} color="inherit" />) : ('Registrar')}
             </Button>
+
+            <Box sx={{ textAlign: 'center', mt: 2 }}>
+              <Typography variant="body2" color="text.secondary">
+                Já tem uma conta?{' '}
+                <Link
+                  component="button"
+                  type="button"
+                  variant="body2"
+                  onClick={onGoToLogin}
+                  sx={{
+                    color: 'primary.main',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      color: 'primary.dark',
+                    },
+                  }}
+                >
+                  Entre aqui
+                </Link>
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Container>
