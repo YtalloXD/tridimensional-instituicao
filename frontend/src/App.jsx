@@ -1,11 +1,15 @@
-
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserSelection from "./UserSelection";
+import Login from "./Login";
 
 function App() {
   return (
-    <>
-      <h1>yee</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<UserSelection />} />
+        <Route path="/login/:role" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
