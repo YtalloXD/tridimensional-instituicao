@@ -1,0 +1,55 @@
+.selection-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.user-box {
+  width: 180px;
+  height: 200px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.user-box:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+.user-icon {
+  font-size: 70px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.user-label {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.student {
+  background: linear-gradient(135deg, #7b5cf5, #c084fc);
+}
+
+.teacher {
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+}
+
+@media(max-width: 500px) {
+  .selection-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
