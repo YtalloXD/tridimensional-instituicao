@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TextField, Button, Stack, Paper } from '@mui/material';
 
 const ProfessorForm = ({ onSubmit, professorEdit }) => {
   const [id, setId] = useState('');
@@ -25,54 +26,72 @@ const ProfessorForm = ({ onSubmit, professorEdit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ id, nome, email, especialidade });
-    if (somenteId) {
-      setNome('');
-      setEmail('');
-      setEspecialidade('');
-    } else {
-      setId('');
-      setNome('');
-      setEmail('');
-      setEspecialidade('');
-    }
+    setId('');
+    setNome('');
+    setEmail('');
+    setEspecialidade('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="ID"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Nome"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-        required={!somenteId}
-        disabled={somenteId} // desabilita os campos se só o id está preenchido
-      />
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required={!somenteId}
-        disabled={somenteId}
-      />
-      <input
-        type="text"
-        placeholder="Especialidade"
-        value={especialidade}
-        onChange={(e) => setEspecialidade(e.target.value)}
-        required={!somenteId}
-        disabled={somenteId}
-      />
-      <button type="submit">
-        {somenteId ? 'Buscar' : professorEdit ? 'Atualizar' : 'Adicionar'}
-      </button>
-    </form>
+    <Paper elevation={4} className="professor-form">
+      <form onSubmit={handleSubmit}>
+<Stack
+  direction="row"
+  spacing={2}
+  className="form-stack"
+  sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}
+>
+  <TextField
+    label="ID"
+    variant="outlined"
+    size="small"
+    value={id}
+    onChange={(e) => setId(e.target.value)}
+    className="input-field"
+  />
+  <TextField
+    label="Nome"
+    variant="outlined"
+    size="small"
+    value={nome}
+    onChange={(e) => setNome(e.target.value)}
+    required={!somenteId}
+    disabled={somenteId}
+    className="input-field"
+  />
+  <TextField
+    label="Email"
+    variant="outlined"
+    size="small"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    required={!somenteId}
+    disabled={somenteId}
+    className="input-field"
+  />
+  <TextField
+    label="Especialidade"
+    variant="outlined"
+    size="small" 
+    value={especialidade}
+    onChange={(e) => setEspecialidade(e.target.value)}
+    required={!somenteId}
+    disabled={somenteId}
+    className="input-field"
+  />
+  <Button
+    variant="contained"
+    type="submit"
+    className="submit-btn"
+    size="small"
+    sx={{ height: '38px', whiteSpace: 'nowrap' }}
+  >
+    {somenteId ? 'Buscar' : professorEdit ? 'Atualizar' : 'Adicionar'}
+  </Button>
+</Stack>
+
+      </form>
+    </Paper>
   );
 };
 

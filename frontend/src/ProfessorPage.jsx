@@ -8,6 +8,14 @@ import {
 } from './api';
 import ProfessorList from './ProfessorList';
 import ProfessorForm from './ProfessorForm';
+import './ProfessorPage.css';
+
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+} from '@mui/material';
 
 function ProfessorPage() {
   const [professores, setProfessores] = useState([]);
@@ -29,16 +37,16 @@ function ProfessorPage() {
   const handleFormSubmit = async ({ id, nome, email, especialidade }) => {
     try {
       if (id && !nome && !email && !especialidade) {
-        // Só ID preenchido -> buscar professor
+      
         const professor = await buscarProfessorId(id);
         setProfessorEdit(professor);
       } else if (professorEdit) {
-        // Atualizar professor existente
+       
         await atualizarProfessor(professorEdit.id, { nome, email, especialidade });
         setProfessorEdit(null);
         fetchProfessores();
       } else {
-        // Criar novo professor
+      
         await criarProfessor({ nome, email, especialidade });
         fetchProfessores();
       }
@@ -61,17 +69,31 @@ function ProfessorPage() {
     }
   };
 
-  return (
-    <div>
-      <h1>Gerenciamento de Professores</h1>
-      <ProfessorForm onSubmit={handleFormSubmit} professorEdit={professorEdit} />
-      <hr />
-      <ProfessorList
-        professores={professores}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
-    </div>
+return (
+    <>
+      <AppBar position="static" sx={{ backgroundColor: '#6a0dad' }}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography variant="h6" component="div">
+            Gerenciamento de Professores
+          </Typography>
+          <Box>
+          
+            {/* imagem da logo aqui */}
+
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      <div className="container-gerenciamento">
+        <ProfessorForm onSubmit={handleFormSubmit} professorEdit={professorEdit} />
+        <hr />
+        <ProfessorList
+          professores={professores}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      </div>
+    </>
   );
 }
 
