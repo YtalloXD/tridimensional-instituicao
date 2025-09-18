@@ -19,8 +19,18 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import PeopleIcon from "@mui/icons-material/People";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SchoolIcon from "@mui/icons-material/School";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoIcone from "../assets/logo-icone.png";
+import Groups2Icon from "@mui/icons-material/Groups2";
 
-const HomePage = ({ user, onLogout }) => {
+const HomePage = ({
+  user,
+  onLogout,
+  onGoToProfessores,
+  onGoToAlunos,
+  onGoToAlunosTurma,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isAluno = user?.tipo === "ALUNO";
@@ -68,7 +78,11 @@ const HomePage = ({ user, onLogout }) => {
     >
       <AppBar position="static" elevation={1}>
         <Toolbar>
-          <MenuBookIcon sx={{ mr: 2 }} />
+          <img
+            src={LogoIcone}
+            alt="Ícone Tridimensional"
+            style={{ height: "32px", marginRight: "16px" }}
+          />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Tridimensional Instituição
           </Typography>
@@ -104,15 +118,15 @@ const HomePage = ({ user, onLogout }) => {
                   <CardContent>
                     <SchoolIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
                     <Typography gutterBottom variant="h5" component="h2">
-                      Minhas Turmas
+                      Minha Turma
                     </Typography>
                     <Typography color="text.secondary">
-                      Acesse suas turmas, materiais e avisos.
+                      Acesse suas turma, materiais e avisos.
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" variant="contained">
-                      Ver Turmas
+                      Ver Turma
                     </Button>
                   </CardActions>
                 </Card>
@@ -134,6 +148,53 @@ const HomePage = ({ user, onLogout }) => {
                   <CardActions>
                     <Button size="small" variant="contained">
                       Ver Boletim
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={cardStyle} elevation={2}>
+                  <CardContent>
+                    <Groups2Icon color="primary" sx={{ fontSize: 40, mb: 2 }} />
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Alunos na turma
+                    </Typography>
+                    <Typography color="text.secondary">
+                      Lista de alunos na sua turma.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={onGoToAlunosTurma}
+                    >
+                      Ver lista
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={cardStyle} elevation={2}>
+                  <CardContent>
+                    <AccountCircleIcon
+                      color="primary"
+                      sx={{ fontSize: 40, mb: 2 }}
+                    />
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Alunos
+                    </Typography>
+                    <Typography color="text.secondary">
+                      Lista de alunos cadastrados.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={onGoToAlunos}
+                    >
+                      Ver lista
                     </Button>
                   </CardActions>
                 </Card>
@@ -176,6 +237,57 @@ const HomePage = ({ user, onLogout }) => {
                   <CardActions>
                     <Button size="small" variant="contained">
                       Abrir Diário
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={cardStyle} elevation={2}>
+                  <CardContent>
+                    <AccountCircleIcon
+                      color="primary"
+                      sx={{ fontSize: 40, mb: 2 }}
+                    />
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Alunos
+                    </Typography>
+                    <Typography color="text.secondary">
+                      Lista de alunos cadastrados.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={onGoToAlunos}
+                    >
+                      Ver lista
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={cardStyle} elevation={2}>
+                  <CardContent>
+                    <ManageAccountsIcon
+                      color="primary"
+                      sx={{ fontSize: 40, mb: 2 }}
+                    />
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Gerenciar Professores
+                    </Typography>
+                    <Typography color="text.secondary">
+                      Adicione, edite ou remova professores do sistema.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={onGoToProfessores}
+                    >
+                      Gerenciar
                     </Button>
                   </CardActions>
                 </Card>

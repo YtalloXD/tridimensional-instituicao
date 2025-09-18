@@ -3,6 +3,9 @@ import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
+import ProfessorPage from "./pages/ProfessorPage";
+import AlunoPage from "./pages/AlunoPage";
+import AlunosTurma from "./pages/AlunosTurma";
 
 const theme = createTheme({
   palette: {
@@ -53,6 +56,22 @@ function App() {
     setPage("login");
   };
 
+  const goToProfessores = () => {
+    setPage("professores");
+  };
+
+  const goToAlunos = () => {
+    setPage("alunos");
+  };
+
+  const goToAlunosTurma = () => {
+    setPage("alunosturma");
+  };
+
+  const goToHome = () => {
+    setPage("home");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -68,7 +87,20 @@ function App() {
           onGoToLogin={goToLogin}
         />
       )}
-      {page === "home" && <HomePage user={user} onLogout={handleLogout} />}
+      {page === "home" && (
+        <HomePage
+          user={user}
+          onLogout={handleLogout}
+          onGoToProfessores={goToProfessores}
+          onGoToAlunos={goToAlunos}
+          onGoToAlunosTurma={goToAlunosTurma}
+          onGoToHome={goToHome}
+        />
+      )}
+
+      {page === "professores" && <ProfessorPage onGoBack={goToHome} />}
+      {page === "alunos" && <AlunoPage onGoBack={goToHome} />}
+      {page === "alunosturma" && <AlunosTurma onGoBack={goToHome} />}
     </ThemeProvider>
   );
 }
