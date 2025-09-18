@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
+import ProfessorPage from './pages/ProfessorPage'; 
 
 const theme = createTheme({
   palette: {
@@ -25,7 +26,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const [page, setPage] = useState('login'); 
+  const [page, setPage] = useState('login');
   const [user, setUser] = useState(null);
 
   const handleLoginSuccess = (userData) => {
@@ -52,27 +53,34 @@ function App() {
   const goToLogin = () => {
     setPage('login');
   };
+  
+  const goToProfessores = () => {
+    setPage('professores');
+  };
+
+  const goToHome = () => {
+    setPage('home');
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {page === 'login' && (
-        <LoginPage 
-          onLoginSuccess={handleLoginSuccess} 
-          onGoToRegister={goToRegister} 
-        />
+        <LoginPage onLoginSuccess={handleLoginSuccess} onGoToRegister={goToRegister} />
       )}
       {page === 'register' && (
-        <RegisterPage 
-          onRegisterSuccess={handleRegisterSuccess} 
-          onGoToLogin={goToLogin} 
-        />
+        <RegisterPage onRegisterSuccess={handleRegisterSuccess} onGoToLogin={goToLogin} />
       )}
       {page === 'home' && (
         <HomePage 
           user={user} 
           onLogout={handleLogout} 
+          onGoToProfessores={goToProfessores} 
         />
+      )}
+      {page === 'professores' && (
+        <ProfessorPage onGoBack={goToHome} />
       )}
     </ThemeProvider>
   );

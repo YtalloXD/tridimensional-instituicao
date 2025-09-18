@@ -1,6 +1,6 @@
 let prisma;
 try {
-  const { PrismaClient } = require("./../generated/prisma");
+  const { PrismaClient } = require("../generated/prisma");
   prisma = new PrismaClient();
 } catch (error) {
   console.error("❌ Erro ao importar Prisma Client:", error.message);

@@ -9,6 +9,7 @@ import {
   Alert,
   Link,
 } from '@mui/material';
+import logoCompleto from './../assets/logo-completo.png';
 
 const LoginPage = ({ onLoginSuccess, onGoToRegister }) => {
   const [email, setEmail] = useState('');
@@ -49,7 +50,7 @@ const LoginPage = ({ onLoginSuccess, onGoToRegister }) => {
     }
   };
 
-  return (
+    return (
     <Box
       sx={{
         position: 'fixed',
@@ -66,7 +67,7 @@ const LoginPage = ({ onLoginSuccess, onGoToRegister }) => {
         px: 2,
       }}
     >
-      <Container component="main" maxWidth="sm">
+      <Container component="main" maxWidth="xs">
         <Box
           sx={{
             display: 'flex',
@@ -78,16 +79,28 @@ const LoginPage = ({ onLoginSuccess, onGoToRegister }) => {
             boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
           }}
         >
-          <Typography component="h1" variant="h4" color="primary" sx={{ textAlign: 'center', mb: 1 }}>
-            Tridimensional Instituição
-          </Typography>
-          <Typography component="h2" variant="h6" sx={{ mb: 3, textAlign: 'center', fontWeight: 'normal', color: 'text.secondary' }}>
+          <img 
+            src={logoCompleto} 
+            alt="Logo Tridimensional" 
+            style={{ width: '150px', marginBottom: '0.5rem' }} 
+          />
+          
+          <Typography 
+            component="h2" 
+            variant="h6" 
+            sx={{ 
+              mb: 2, 
+              textAlign: 'center', 
+              fontWeight: 'normal', 
+              color: 'text.secondary' 
+            }}
+          >
             Entre na sua Conta
           </Typography>
           
           <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
             <TextField
-              margin="normal"
+              margin="dense" 
               required
               fullWidth
               id="email"
@@ -100,7 +113,7 @@ const LoginPage = ({ onLoginSuccess, onGoToRegister }) => {
             />
             
             <TextField
-              margin="normal"
+              margin="dense" // AJUSTE 4: Mudei de "normal" para "dense"
               required
               fullWidth
               name="password"
@@ -122,14 +135,15 @@ const LoginPage = ({ onLoginSuccess, onGoToRegister }) => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, py: 1.5, fontSize: '1rem' }}
+              sx={{ 
+                mt: 2.5, // AJUSTE 5: Diminuí a margem superior de 3 para 2.5
+                mb: 2, 
+                py: 1.5, 
+                fontSize: '1rem' 
+              }}
               disabled={loading}
             >
-              {loading ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : (
-                'Entrar'
-              )}
+              {loading ? <CircularProgress size={24} color="inherit" /> : 'Entrar'}
             </Button>
 
             <Box sx={{ textAlign: 'center', mt: 2 }}>

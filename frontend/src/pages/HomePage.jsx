@@ -19,8 +19,10 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import PeopleIcon from '@mui/icons-material/People';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SchoolIcon from '@mui/icons-material/School';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'; 
+import logoIcone from './../assets/logo-icone.png';
 
-const HomePage = ({ user, onLogout }) => {
+const HomePage = ({ user, onLogout, onGoToProfessores }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isAluno = user?.tipo === 'ALUNO';
@@ -63,12 +65,16 @@ const HomePage = ({ user, onLogout }) => {
         width: '100%',
         height: '100%',
         overflowY: 'auto',
-        backgroundColor: '#f4f6f8', 
+        backgroundColor: '#f4f6f8',
       }}
     >
       <AppBar position="static" elevation={1}>
         <Toolbar>
-          <MenuBookIcon sx={{ mr: 2 }} />
+          <img 
+            src={logoIcone} 
+            alt="Ícone Tridimensional" 
+            style={{ height: '32px', marginRight: '16px' }} 
+          />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Tridimensional Instituição
           </Typography>
@@ -97,26 +103,26 @@ const HomePage = ({ user, onLogout }) => {
             <>
               <Grid item xs={12} sm={6} md={4}>
                 <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <SchoolIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
-                    <Typography gutterBottom variant="h5" component="h2">Minhas Turmas</Typography>
-                    <Typography color="text.secondary">Acesse suas turmas, materiais e avisos.</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">Ver Turmas</Button>
-                  </CardActions>
+                    <CardContent>
+                        <SchoolIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
+                        <Typography gutterBottom variant="h5" component="h2">Minha Turma</Typography>
+                        <Typography color="text.secondary">Acesse suas turma, materiais e avisos.</Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" variant="contained">Ver Turma</Button>
+                    </CardActions>
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
                 <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <AssessmentIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
-                    <Typography gutterBottom variant="h5" component="h2">Minhas Notas</Typography>
-                    <Typography color="text.secondary">Consulte seu boletim e o desempenho nas matérias.</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">Ver Boletim</Button>
-                  </CardActions>
+                    <CardContent>
+                        <AssessmentIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
+                        <Typography gutterBottom variant="h5" component="h2">Minhas Notas</Typography>
+                        <Typography color="text.secondary">Consulte seu boletim e o desempenho nas matérias.</Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" variant="contained">Ver Boletim</Button>
+                    </CardActions>
                 </Card>
               </Grid>
             </>
@@ -124,25 +130,44 @@ const HomePage = ({ user, onLogout }) => {
             <>
               <Grid item xs={12} sm={6} md={4}>
                 <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <PeopleIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
-                    <Typography gutterBottom variant="h5" component="h2">Gerenciar Turmas</Typography>
-                    <Typography color="text.secondary">Visualize alunos, envie avisos e materiais.</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">Acessar Turmas</Button>
-                  </CardActions>
+                    <CardContent>
+                        <PeopleIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
+                        <Typography gutterBottom variant="h5" component="h2">Gerenciar Turmas</Typography>
+                        <Typography color="text.secondary">Visualize alunos, envie avisos e materiais.</Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" variant="contained">Acessar Turmas</Button>
+                    </CardActions>
                 </Card>
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
                 <Card sx={cardStyle} elevation={2}>
+                    <CardContent>
+                        <AssessmentIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
+                        <Typography gutterBottom variant="h5" component="h2">Lançar Notas</Typography>
+                        <Typography color="text.secondary">Acesse o diário de classe para registrar notas e faltas.</Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" variant="contained">Abrir Diário</Button>
+                    </CardActions>
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={cardStyle} elevation={2}>
                   <CardContent>
-                    <AssessmentIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
-                    <Typography gutterBottom variant="h5" component="h2">Lançar Notas</Typography>
-                    <Typography color="text.secondary">Acesse o diário de classe para registrar notas e faltas.</Typography>
+                    <ManageAccountsIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Gerenciar Professores
+                    </Typography>
+                    <Typography color="text.secondary">
+                      Adicione, edite ou remova professores do sistema.
+                    </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" variant="contained">Abrir Diário</Button>
+                    <Button size="small" variant="contained" onClick={onGoToProfessores}>
+                      Gerenciar
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
