@@ -22,9 +22,6 @@ const ProfessorList = ({ professores, onEdit, onDelete }) => {
                   <strong>Nome:</strong> {professor.nome}
                 </Typography>
                 <Typography variant="body1">
-                  <strong>Email:</strong> {professor.email}
-                </Typography>
-                <Typography variant="body1">
                   <strong>Especialidade:</strong> {professor.especialidade}
                 </Typography>
               </Box>

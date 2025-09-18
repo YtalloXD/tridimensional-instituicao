@@ -5,18 +5,17 @@ import {
   atualizarAluno,
   deletarAluno,
   buscarAlunoId,
-} from "../services/api";
-import AlunoList from "../AlunoList";
-import AlunoForm from "../AlunoForm";
-import "../AlunoPage.css";
-import LogoIcone from "../assets/logo-icone.png";
-
+} from "../../services/api";
+import AlunoList from "./AlunoList";
+import AlunoForm from "./AlunoForm";
+import "./AlunoPage.css";
+import LogoIcone from "./../../assets/logo-icone.png";
 import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material";
-// import ListaNomesAlunosPorTurma from "../ListaNomesAlunosPorTurma";
-function AlunoPage() {
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+function AlunoPage({ onGoBack }) {
   const [alunos, setAlunos] = useState([]);
   const [alunoEdit, setAlunoEdit] = useState(null);
-  // const isAluno = user?.tipo === "ALUNO";
 
   useEffect(() => {
     fetchAlunos();
@@ -31,7 +30,7 @@ function AlunoPage() {
     }
   };
 
-  const handleFormSubmit = async ({ id, nome, idade }) => {
+  const handleFormSubmit = async ({ id, nome, idade, email, turma_id }) => {
     try {
       if (id && !nome && !idade) {
         const aluno = await buscarAlunoId(id);
@@ -40,11 +39,12 @@ function AlunoPage() {
         await atualizarAluno(alunoEdit.id, {
           nome,
           idade,
+          email,
         });
         setAlunoEdit(null);
         fetchAlunos();
       } else {
-        await criarAluno({ nome, idade });
+        await criarAluno({ nome, idade, email, turma_id });
         fetchAlunos();
       }
     } catch (e) {
@@ -67,33 +67,52 @@ function AlunoPage() {
   };
 
   return (
-    <>
+    <Box
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        overflowY: "auto", 
+        backgroundColor: "#f8f9fa", 
+      }}
+    >
       <AppBar position="static" sx={{ backgroundColor: "#6a0dad" }}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <img
               src={LogoIcone}
               alt="Ícone Tridimensional"
               style={{ height: "32px", marginRight: "16px" }}
             />
+            <Typography variant="h6" component="div">
+              Gerenciar Alunos
+            </Typography>
           </Box>
-          <Typography variant="h6" component="div">
-            Buscador de Alunos
-          </Typography>
+          <Button
+            color="inherit"
+            startIcon={<ArrowBackIcon />}
+            onClick={onGoBack}
+          >
+            Voltar
+          </Button>
         </Toolbar>
       </AppBar>
-
+      
       <div className="container-gerenciamento">
-        <AlunoForm onSubmit={handleFormSubmit} alunoEdit={alunoEdit} />
-        <hr />
-        <AlunoList
-          alunos={alunos}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
+        <Box className="aluno-form">
+          <AlunoForm onSubmit={handleFormSubmit} alunoEdit={alunoEdit} />
+        </Box>
+        <Box className="lista-alunos">
+          <AlunoList
+            alunos={alunos}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
+        </Box>
       </div>
-      <ListaNomesAlunosPorTurma />
-    </>
+    </Box>
   );
 }
 

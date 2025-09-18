@@ -14,15 +14,12 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import AssessmentIcon from "@mui/icons-material/Assessment";
-import PeopleIcon from "@mui/icons-material/People";
 import LogoutIcon from "@mui/icons-material/Logout";
-import SchoolIcon from "@mui/icons-material/School";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoIcone from "../assets/logo-icone.png";
 import Groups2Icon from "@mui/icons-material/Groups2";
+import SchoolIcon from '@mui/icons-material/School'; 
 
 const HomePage = ({
   user,
@@ -30,6 +27,7 @@ const HomePage = ({
   onGoToProfessores,
   onGoToAlunos,
   onGoToAlunosTurma,
+  onGoToTurmas, 
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -113,46 +111,7 @@ const HomePage = ({
         <Grid container spacing={4}>
           {isAluno ? (
             <>
-              <Grid item xs={12} sm={6} md={4}>
-                <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <SchoolIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Minha Turma
-                    </Typography>
-                    <Typography color="text.secondary">
-                      Acesse suas turma, materiais e avisos.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">
-                      Ver Turma
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <AssessmentIcon
-                      color="primary"
-                      sx={{ fontSize: 40, mb: 2 }}
-                    />
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Minhas Notas
-                    </Typography>
-                    <Typography color="text.secondary">
-                      Consulte seu boletim e o desempenho nas matérias.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">
-                      Ver Boletim
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
+              <Grid item xs={12} sm={6}>
                 <Card sx={cardStyle} elevation={2}>
                   <CardContent>
                     <Groups2Icon color="primary" sx={{ fontSize: 40, mb: 2 }} />
@@ -160,7 +119,7 @@ const HomePage = ({
                       Alunos na turma
                     </Typography>
                     <Typography color="text.secondary">
-                      Lista de alunos na sua turma.
+                      Veja quem são seus colegas de turma.
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -174,85 +133,21 @@ const HomePage = ({
                   </CardActions>
                 </Card>
               </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <AccountCircleIcon
-                      color="primary"
-                      sx={{ fontSize: 40, mb: 2 }}
-                    />
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Alunos
-                    </Typography>
-                    <Typography color="text.secondary">
-                      Lista de alunos cadastrados.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      onClick={onGoToAlunos}
-                    >
-                      Ver lista
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
             </>
           ) : (
             <>
               <Grid item xs={12} sm={6} md={4}>
                 <Card sx={cardStyle} elevation={2}>
                   <CardContent>
-                    <PeopleIcon color="primary" sx={{ fontSize: 40, mb: 2 }} />
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Gerenciar Turmas
-                    </Typography>
-                    <Typography color="text.secondary">
-                      Visualize alunos, envie avisos e materiais.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">
-                      Acessar Turmas
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
-                    <AssessmentIcon
-                      color="primary"
-                      sx={{ fontSize: 40, mb: 2 }}
-                    />
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Lançar Notas
-                    </Typography>
-                    <Typography color="text.secondary">
-                      Acesse o diário de classe para registrar notas e faltas.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" variant="contained">
-                      Abrir Diário
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <Card sx={cardStyle} elevation={2}>
-                  <CardContent>
                     <AccountCircleIcon
                       color="primary"
                       sx={{ fontSize: 40, mb: 2 }}
                     />
                     <Typography gutterBottom variant="h5" component="h2">
-                      Alunos
+                      Gerenciar Alunos
                     </Typography>
                     <Typography color="text.secondary">
-                      Lista de alunos cadastrados.
+                      Edite ou remova alunos.
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -261,7 +156,7 @@ const HomePage = ({
                       variant="contained"
                       onClick={onGoToAlunos}
                     >
-                      Ver lista
+                      Gerenciar
                     </Button>
                   </CardActions>
                 </Card>
@@ -278,7 +173,7 @@ const HomePage = ({
                       Gerenciar Professores
                     </Typography>
                     <Typography color="text.secondary">
-                      Adicione, edite ou remova professores do sistema.
+                      Edite ou remova professores.
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -286,6 +181,32 @@ const HomePage = ({
                       size="small"
                       variant="contained"
                       onClick={onGoToProfessores}
+                    >
+                      Gerenciar
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={cardStyle} elevation={2}>
+                  <CardContent>
+                    <SchoolIcon
+                      color="primary"
+                      sx={{ fontSize: 40, mb: 2 }}
+                    />
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Gerenciar Turmas
+                    </Typography>
+                    <Typography color="text.secondary">
+                      Crie, edite ou remova turmas.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      onClick={onGoToTurmas} 
                     >
                       Gerenciar
                     </Button>

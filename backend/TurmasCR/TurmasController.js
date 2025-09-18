@@ -67,3 +67,25 @@ exports.deletarTurma = async (req, res) => {
   console.log(msg);
   res.status(200).send(turmaDoBanco);
 };
+
+exports.listarAlunosPorTurma = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const alunosDaTurma = await prisma.aluno.findMany({
+      where: {
+        turma_id: parseInt(id)
+      },
+      include: {
+        usuario: true,
+        turma: true
+      }
+    });
+
+    console.log(`Alunos da turma ${id}:`, alunosDaTurma);
+    res.status(200).json(alunosDaTurma);
+  } catch (error) {
+    console.error("Erro ao listar alunos da turma:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};

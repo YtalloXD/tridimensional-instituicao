@@ -27,7 +27,6 @@ exports.register = async (req, res) => {
   }
 
   try {
-    // Verifica se usuário já existe
     const usuarioExistente = await prisma.usuario.findUnique({
       where: { email },
     });
@@ -51,7 +50,6 @@ exports.register = async (req, res) => {
         });
       }
 
-      // Verifica se turma existe
       const turmaExiste = await prisma.turma.findUnique({
         where: { id: Number(turma_id) },
       });

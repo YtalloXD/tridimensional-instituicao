@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: #f8f9fa; 
+  color: #343a40;
+}
+
+.container-gerenciamento {
+  max-width: 1200px; 
+  margin: 40px auto; 
+  padding: 0 20px; 
+  display: flex;
+  flex-direction: column;
+  gap: 40px; 
+}
+
+.professor-form {
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lista-professores {
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lista-professores .MuiTypography-h5 {
+  margin-bottom: 20px;
+  color: #6a0dad;
+  text-align: center;
+}
+
+.card-professor {
+  padding: 16px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  flex-wrap: wrap; 
+  gap: 10px;
+}
+
+.card-professor:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1; 
+}
+
+.card-icons {
+  flex-shrink: 0; 
+}
+
+@media (max-width: 768px) {
+  .container-gerenciamento {
+    margin: 20px auto;
+    gap: 20px;
+  }
+
+  .card-professor {
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 12px;
+  }
+
+  .card-icons {
+    align-self: flex-end;
+  }
+}

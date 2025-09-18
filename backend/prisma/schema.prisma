@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -12,12 +6,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-enum UserRole {
-  ALUNO
-  PROFESSOR
-  ADMIN
 }
 
 model Usuario {
@@ -39,22 +27,20 @@ model Aluno {
   turma_id   Int
   created_at DateTime @default(now())
   usuario_id Int      @unique
-  usuario    Usuario  @relation(fields: [usuario_id], references: [id])
-
-  turma Turma @relation(fields: [turma_id], references: [id])
+  turma      Turma    @relation(fields: [turma_id], references: [id])
+  usuario    Usuario  @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
 
   @@map("alunos")
 }
 
 model Turma {
-  id           Int      @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   nome         String
-  professor_id Int
+  professor_id Int?
   ano          Int
-  created_at   DateTime @default(now())
-
-  professor Professor @relation(fields: [professor_id], references: [id])
-  alunos    Aluno[]
+  created_at   DateTime   @default(now())
+  alunos       Aluno[]
+  professor    Professor? @relation(fields: [professor_id], references: [id])
 
   @@map("turmas")
 }
@@ -65,9 +51,14 @@ model Professor {
   especialidade String
   created_at    DateTime @default(now())
   usuario_id    Int      @unique
-  usuario       Usuario  @relation(fields: [usuario_id], references: [id])
-
-  turmas Turma[]
+  usuario       Usuario  @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
+  turmas        Turma[]
 
   @@map("professores")
+}
+
+enum UserRole {
+  ALUNO
+  PROFESSOR
+  ADMIN
 }

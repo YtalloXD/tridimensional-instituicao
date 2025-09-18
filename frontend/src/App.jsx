@@ -3,9 +3,11 @@ import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import ProfessorPage from "./pages/ProfessorPage";
-import AlunoPage from "./pages/AlunoPage";
-import AlunosTurma from "./pages/AlunosTurma";
+import ProfessorPage from "./pages/Professores/ProfessorPage";
+import AlunoPage from "./pages/Alunos/AlunoPage";
+import AlunosTurma from "./pages/Turmas/AlunosTurma";
+import ListaAlunosPorTurma from "./pages/ListaNomesAlunosPorTurma"; 
+import TurmaPage from "./pages/Turmas/TurmaPage"; 
 
 const theme = createTheme({
   palette: {
@@ -68,8 +70,23 @@ function App() {
     setPage("alunosturma");
   };
 
+  const goToTurmaPage = () => {
+    setPage("turmas");
+  };
+
+  const goToListaAlunosPorTurma = () => {
+    setPage("listaalunosporturma");
+  };
+
   const goToHome = () => {
     setPage("home");
+  };
+
+  const getTurmaId = () => {
+    if (user?.aluno?.turmaId) return user.aluno.turmaId;
+    if (user?.turmaId) return user.turmaId;
+    if (user?.aluno?.turma?.id) return user.aluno.turma.id;
+    return null;
   };
 
   return (
@@ -93,14 +110,23 @@ function App() {
           onLogout={handleLogout}
           onGoToProfessores={goToProfessores}
           onGoToAlunos={goToAlunos}
-          onGoToAlunosTurma={goToAlunosTurma}
+          onGoToAlunosTurma={goToListaAlunosPorTurma} 
           onGoToHome={goToHome}
+          onGoToTurmas={goToTurmaPage}
         />
       )}
-
       {page === "professores" && <ProfessorPage onGoBack={goToHome} />}
       {page === "alunos" && <AlunoPage onGoBack={goToHome} />}
+      {page === "turmas" && <TurmaPage onGoBack={goToHome} />}
       {page === "alunosturma" && <AlunosTurma onGoBack={goToHome} />}
+      {page === "listaalunosporturma" && (
+        <ListaAlunosPorTurma
+          turmaId={getTurmaId()}
+          user={user}
+          onGoToHome={goToHome}
+        />
+        
+      )}
     </ThemeProvider>
   );
 }

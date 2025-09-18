@@ -1,6 +1,6 @@
 import React from "react";
 import ListaNomesAlunosPorTurma from "../ListaNomesAlunosPorTurma";
-import LogoIcone from "../assets/logo-icone.png";
+import LogoIcone from "./../../assets/logo-icone.png";
 import {
   AppBar,
   Box,
